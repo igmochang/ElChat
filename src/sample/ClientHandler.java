@@ -9,6 +9,10 @@ import java.net.Socket;
 import java.util.Scanner;
 
 
+/**
+ * @Autor Ignacio Morales Chang
+ *
+ */
 public class ClientHandler extends Thread {
 
 
@@ -16,6 +20,12 @@ public class ClientHandler extends Thread {
     final DataOutputStream dos;
     final Socket s;
 
+    /**
+     * @param s Socket
+     * @param dis DataInputStream
+     * @param dos DataOutputStream
+     * @throws IOException errores por input o output
+     */
     public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) throws IOException {
 
         this.s = s;
@@ -47,8 +57,15 @@ public class ClientHandler extends Thread {
 
     }
 
+
     private static class Enviarmensaje extends Thread {
         String toreturn;
+
+        /**
+         * @param scn Scanner
+         * @param dos DataOutputStream
+         * @throws IOException errores por input o output
+         */
         public Enviarmensaje(Scanner scn, DataOutputStream dos) throws IOException {
             toreturn = scn.nextLine();
             dos.writeUTF(toreturn);
@@ -58,6 +75,12 @@ public class ClientHandler extends Thread {
 
     private static class recibirmensaje extends Thread {
         String recieved;
+
+        /**
+         *
+         * @param dis DataInputStream
+         * @throws IOException errores por input o output
+         */
         public recibirmensaje(DataInputStream dis) throws IOException {
             recieved = dis.readUTF();
             System.out.println(recieved); // Se escribe mensaje de cliente

@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Servidor extends JFrame {
+/**
+ * @Autor Ignacio Morales Chang
+ */
+public class Servidor extends JFrame{
 
     private JFrame mensaje;
 
@@ -33,6 +36,7 @@ public class Servidor extends JFrame {
         mensaje.add(to);
         JTextArea men = new JTextArea("Inserte el mensaje que aquí");
         mensaje.add(men);
+
         JButton env = new JButton("Enviar");
         enviarMensaje a = new enviarMensaje();
         env.addActionListener(a);
@@ -71,6 +75,10 @@ public class Servidor extends JFrame {
 
     public static int Puerto;
 
+    /**
+     * @param args
+     * @throws IOException errores por input o output
+     */
     public static void main(String[] args) throws IOException {
 
         ServerSocket ss;

@@ -13,7 +13,9 @@ import java.awt.*;
 import javax.swing.*;
 
 
-
+/**
+ * @Autor Ignacio Morales Chang
+ */
 public class Cliente extends JFrame {
 
     Cliente(){
@@ -34,8 +36,13 @@ public class Cliente extends JFrame {
         setVisible(true);
     }
 
+
     public static int serverPuerto = 0;
 
+    /**
+     * @param args
+     * @throws IOException errores por input o output
+     */
     public static void main(String[] args) throws IOException {
 
 
@@ -50,24 +57,20 @@ public class Cliente extends JFrame {
 
         serverPuerto = s.getLocalPort();
         Cliente gui = new Cliente();
+        System.out.println(s.getLocalPort());
 
         DataInputStream dis = new DataInputStream(s.getInputStream());
         DataOutputStream dos = new DataOutputStream(s.getOutputStream());
         while (true){
 
-            System.out.println(s.getLocalPort());
 
-            System.out.println("4");
 
             Thread recmen = new Thread(new recibirmensaje(dis));
             recmen.start();
 
-            System.out.println("5");
 
             Thread envmen = new Thread(new Enviarmensaje(scn, dos));
             envmen.start();
-
-            System.out.println("6");
 
 
         }
@@ -79,6 +82,9 @@ public class Cliente extends JFrame {
         String recieved;
         final DataInputStream dis;
 
+        /**
+         * @param dis DataInputStream
+         */
         public recibirmensaje(DataInputStream dis){
             this.dis = dis;
         }
@@ -99,6 +105,11 @@ public class Cliente extends JFrame {
         final String toreturn;
         final DataOutputStream dos;
 
+        /**
+         * @param scn Scanner
+         * @param dos DataOutputStream
+         * @throws IOException errores por input o output
+         */
         public Enviarmensaje(Scanner scn, DataOutputStream dos) throws IOException {
             toreturn = scn.nextLine();
             this.dos = dos;
